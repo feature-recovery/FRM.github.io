@@ -595,9 +595,9 @@ changes under physical transformation..
         <div class="card-subtitle">Positioning</div>
         <div class="card-title">Comparison with existing robustness and disaster datasets</div>
         <p class="section-body" style="margin-top: 6px;">
-          Figure 2: Existing benchmarks provide clean-corrupted
-          image pairs, matched adverse-condition scenes, or disaster damage annotations. TRACE instead tracks individual
-          objects through progressive physical degradation with a pristine reference.
+          Existing benchmarks provide clean-corrupted image pairs, matched adverse-condition scenes,
+          or disaster damage annotations. TRACE instead tracks individual objects through progressive
+          physical degradation with a pristine reference.
         </p>
 
         <div class="table-wrapper">
@@ -605,37 +605,53 @@ changes under physical transformation..
             <thead>
               <tr>
                 <th>Dataset</th>
-                <th>Third-Person</th>
-                <th>360°</th>
-                <th>Egocentric</th>
-                <th>Video</th>
-                <th>Audio</th>
-                <th>Real-world</th>
-                <th>Safety-Critical</th>
-                <th>Duration (s)</th>
-                <th>Public</th>
+                <th>Setting</th>
+                <th>Reference pairing</th>
+                <th>Physical object trajectory</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>Ego4D</td>
-                <td>✗</td><td>✗</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td><td>✗</td><td>10,800,000</td><td>✓</td>
+                <td>ImageNet-C</td>
+                <td>Image corruption</td>
+                <td>Clean image</td>
+                <td>✗</td>
               </tr>
               <tr>
-                <td>EPIC-Kitchens</td>
-                <td>✗</td><td>✗</td><td>✓</td><td>✓</td><td>✗</td><td>✓</td><td>✗</td><td>712,800</td><td>✓</td>
+                <td>COCO-C</td>
+                <td>Detection corruption</td>
+                <td>Clean image</td>
+                <td>✗</td>
               </tr>
               <tr>
-                <td>360+x</td>
-                <td>✓</td><td>✓</td><td>✗</td><td>✓</td><td>✗</td><td>✗</td><td>✗</td><td>244,800</td><td>✓</td>
+                <td>ACDC</td>
+                <td>Adverse driving conditions</td>
+                <td>Matched normal scene</td>
+                <td>✗</td>
               </tr>
               <tr>
-                <td>HACS++</td>
-                <td>✓</td><td>✗</td><td>✗</td><td>✓</td><td>✗</td><td>✗</td><td>✗</td><td>500,400</td><td>✓</td>
+                <td>xBD</td>
+                <td>Disaster building damage</td>
+                <td>Pre/post satellite</td>
+                <td>✗</td>
+              </tr>
+              <tr>
+                <td>RescueNet</td>
+                <td>Post-hurricane UAV damage</td>
+                <td>✗</td>
+                <td>✗</td>
+              </tr>
+              <tr>
+                <td>Incidents1M</td>
+                <td>Incident images</td>
+                <td>✗</td>
+                <td>✗</td>
               </tr>
               <tr class="row-highlight">
-                <td><strong>Fire360 (Ours)</strong></td>
-                <td>✓</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td><td><strong>180,000</strong></td><td>✓</td>
+                <td><strong>TRACE (Ours)</strong></td>
+                <td>Post-fire object damage</td>
+                <td><strong>Pristine object</strong></td>
+                <td><strong>L0–L4</strong></td>
               </tr>
             </tbody>
           </table>
