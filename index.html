@@ -12,10 +12,10 @@
       --bg: #050708;
       --card: #101418;
       --accent: #d8d8d8;
-      --accent-soft: #a6a6a6;
+      --accent-soft: #c2c2c2;
       --gold: #f2c96a;
       --text-main: #f5f5f5;
-      --text-muted: #a0a4aa;
+      --text-muted: #c4c8ce;
       --border-subtle: rgba(200,200,200,0.12);
       --shadow-soft: 0 18px 40px rgba(0,0,0,0.55);
       --radius-lg: 18px;
@@ -477,13 +477,13 @@
     <div class="nav-inner">
       <div class="nav-left">
         <div class="nav-dot"></div>
-        <div class="nav-title">Fire360 </div>
+        <div class="nav-title">Feature Recovery for Post-fire Object Detection </div>
       </div>
       <nav class="nav-links">
         <a href="#overview">Overview</a>
         <a href="#dataset">Dataset</a>
         <a href="#tasks">Tasks</a>
-        <a href="#tor">TOR</a>
+        <a href="#tor">TRACE</a>
         <a href="#results">Results</a>
         <a href="#resources">Resources</a>
       </nav>
@@ -496,9 +496,11 @@
       <div class="hero-badge">
         <span>NeurIPS 2026 Poster · Benchmark & Method</span>
       </div>
-      <h1 class="hero-title">
-        Feature Recovery for Object Understanding After Irreversible Fire Damage
-      </h1>
+      <div class="hero-fire">
+        <h1 class="hero-title">
+          Feature Recovery for Object Understanding After Irreversible Fire Damage
+        </h1>
+      </div>
       <p class="hero-subtitle">
         Introduces the first transformation-aware dataset for post-fire object understanding, 
         along with a lightweight plug-and-play module that maps degraded encoder features 
@@ -595,9 +597,9 @@ changes under physical transformation..
         <div class="card-subtitle">Positioning</div>
         <div class="card-title">Comparison with existing robustness and disaster datasets</div>
         <p class="section-body" style="margin-top: 6px;">
-          Figure 2: Existing benchmarks provide clean-corrupted
-          image pairs, matched adverse-condition scenes, or disaster damage annotations. TRACE instead tracks individual
-          objects through progressive physical degradation with a pristine reference.
+          Existing benchmarks provide clean-corrupted image pairs, matched adverse-condition scenes,
+          or disaster damage annotations. TRACE instead tracks individual objects through progressive
+          physical degradation with a pristine reference.
         </p>
 
         <div class="table-wrapper">
@@ -605,37 +607,53 @@ changes under physical transformation..
             <thead>
               <tr>
                 <th>Dataset</th>
-                <th>Third-Person</th>
-                <th>360°</th>
-                <th>Egocentric</th>
-                <th>Video</th>
-                <th>Audio</th>
-                <th>Real-world</th>
-                <th>Safety-Critical</th>
-                <th>Duration (s)</th>
-                <th>Public</th>
+                <th>Setting</th>
+                <th>Reference pairing</th>
+                <th>Physical object trajectory</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>Ego4D</td>
-                <td>✗</td><td>✗</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td><td>✗</td><td>10,800,000</td><td>✓</td>
+                <td>ImageNet-C</td>
+                <td>Image corruption</td>
+                <td>Clean image</td>
+                <td>✗</td>
               </tr>
               <tr>
-                <td>EPIC-Kitchens</td>
-                <td>✗</td><td>✗</td><td>✓</td><td>✓</td><td>✗</td><td>✓</td><td>✗</td><td>712,800</td><td>✓</td>
+                <td>COCO-C</td>
+                <td>Detection corruption</td>
+                <td>Clean image</td>
+                <td>✗</td>
               </tr>
               <tr>
-                <td>360+x</td>
-                <td>✓</td><td>✓</td><td>✗</td><td>✓</td><td>✗</td><td>✗</td><td>✗</td><td>244,800</td><td>✓</td>
+                <td>ACDC</td>
+                <td>Adverse driving conditions</td>
+                <td>Matched normal scene</td>
+                <td>✗</td>
               </tr>
               <tr>
-                <td>HACS++</td>
-                <td>✓</td><td>✗</td><td>✗</td><td>✓</td><td>✗</td><td>✗</td><td>✗</td><td>500,400</td><td>✓</td>
+                <td>xBD</td>
+                <td>Disaster building damage</td>
+                <td>Pre/post satellite</td>
+                <td>✗</td>
+              </tr>
+              <tr>
+                <td>RescueNet</td>
+                <td>Post-hurricane UAV damage</td>
+                <td>✗</td>
+                <td>✗</td>
+              </tr>
+              <tr>
+                <td>Incidents1M</td>
+                <td>Incident images</td>
+                <td>✗</td>
+                <td>✗</td>
               </tr>
               <tr class="row-highlight">
-                <td><strong>Fire360 (Ours)</strong></td>
-                <td>✓</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td><td><strong>180,000</strong></td><td>✓</td>
+                <td><strong>TRACE (Ours)</strong></td>
+                <td>Post-fire object damage</td>
+                <td><strong>Pristine object</strong></td>
+                <td><strong>L0–L4</strong></td>
               </tr>
             </tbody>
           </table>
@@ -656,7 +674,7 @@ changes under physical transformation..
     </section>
 
     <!-- TASKS -->
-    <section id="tasks" class="reveal section-block">
+   <section id="tasks" class="reveal section-block">
       <div class="section-header">
         <h2 class="section-title">Benchmark Tasks</h2>
       </div>
@@ -664,7 +682,7 @@ changes under physical transformation..
       <div class="task-grid">
         <div class="task-card">
           <div class="task-title">Degraded-object detection.</div>
-          <div class="task-meta">Goal: ocalize all objects of interest in scene-level postfire images.</div>
+          <div class="task-meta">Goal: localize all objects of interest in scene-level post-fire images.</div>
           <p class="task-text">
             Output: bounding boxes + mapped COCO classes.
           </p>
@@ -672,7 +690,7 @@ changes under physical transformation..
         </div>
 
         <div class="task-card">
-          <div class="task-title">Pristine-state recovery (feature). </div>
+          <div class="task-title">Pristine-state recovery (feature).</div>
           <div class="task-meta">Goal: recover CLIP/SigLIP2 features toward paired pristine targets.</div>
           <p class="task-text">
             Output: recovered visual embeddings.
@@ -702,22 +720,20 @@ changes under physical transformation..
           <div class="task-title">Pristine description generation.</div>
           <div class="task-meta">Goal: describe object identity, material, and function before degradation.</div>
           <p class="task-text">
-           Output: single-sentence description.
+            Output: single-sentence description.
           </p>
           <div class="pill"><span class="pill-dot"></span>Metric: mean of identity accuracy, material micro-F1, and function accuracy.</div>
         </div>
-      </div>
 
-      <div class="task-grid">
         <div class="task-card">
           <div class="task-title">Functional reasoning.</div>
-          <div class="task-meta">Goal: predict pre-degradation function and required restoration materialss.</div>
+          <div class="task-meta">Goal: predict pre-degradation function and required restoration materials.</div>
           <p class="task-text">
             Output: function tags + restoration materials.
           </p>
           <div class="pill"><span class="pill-dot"></span>Metric: mean of function-tag micro-F1 and restoration-material micro-F1.</div>
         </div>
-
+      </div>
     </section>
 
     <!-- TOR SECTION -->
@@ -829,6 +845,39 @@ model. Dashed paths denote the no-FRM baseline.
             margin-top: 24px;
           }
         }
+        .figure-caption {
+      color: #c4c8ce !important;
+      opacity: 1 !important;
+    }
+
+    /* FIRE PHOTO BEHIND TITLE */
+    .hero-fire {
+      position: relative;
+      padding: 40px 0 30px;
+    }
+
+    .hero-fire::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      transform: translateX(-50%);
+      width: min(900px, 100%);
+      height: 130%;
+      background: url("images/by_meh-fire.jpg") center bottom / cover no-repeat;
+      opacity: 0.6;
+      z-index: 0;
+      pointer-events: none;
+      -webkit-mask-image: radial-gradient(ellipse 55% 65% at 50% 65%, #000 35%, transparent 100%);
+              mask-image: radial-gradient(ellipse 55% 65% at 50% 65%, #000 35%, transparent 100%);
+    }
+
+    .hero-fire .hero-title {
+      position: relative;
+      z-index: 1;
+      text-shadow: 0 2px 20px rgba(0,0,0,0.85);
+    }
+      </style>
       </style>
     
             <!-- DROPDOWN: merged tabular results -->
@@ -1002,14 +1051,12 @@ model. Dashed paths denote the no-FRM baseline.
       
             <!-- 2×2 grid of task plots (single square image) -->
             <div class="figure figure-tor">
-              <img src="images/frm_results_square.png"
+              <img src="images/results.png"
                    alt="2x2 grid of bar charts comparing base and +FRM performance of Qwen3-VL, Qwen2.5-VL, InternVL3.5, Molmo2, and LLaVA-OV-1.5 on pristine-state retrieval, original material recovery, pristine description generation, and functional reasoning." />
               <div class="figure-caption">
-                Base vs. +FRM: Adding FRM improves all five models on all four tasks while keeping the host
+                Figure 7: Adding FRM improves all five models on all four tasks while keeping the host
                 model frozen, with average gains of 9.1 R@1 points on retrieval, 5.6 micro-F1 points on material
                 recovery, 4.7 points on description generation, and 4.9 micro-F1 points on functional reasoning.
-                Gains are largest for weaker baselines: InternVL3.5 improves by 15.83 R@1 on retrieval and
-                9.81 micro-F1 on material recovery.
               </div>
             </div>
       
@@ -1041,7 +1088,7 @@ model. Dashed paths denote the no-FRM baseline.
     <div class="card-subtitle">Citation</div>
     <div class="card-title">BibTeX</div>
     <pre>
-@misc{tiwari2025fire360benchmarkrobustperception,
+@misc{tiwari2025featurerevoryrobustfiredetection,
   title         = {Feature Recovery for Object Understanding After Irreversible Fire Damage},
   author        = {Aditi Tiwari and Sofia Stoica and Savya Khosla and David Forsyth and Heng Ji},
   year          = {2026},
@@ -1059,7 +1106,7 @@ model. Dashed paths denote the no-FRM baseline.
     FRM · NeurIPS 2026 Poster &nbsp;·&nbsp; UIUC
   </div>
   <div>
-    Contact: <a href="mailto:aditit5@illinois.edu">aditit5@illinois.edu</a>
+    Contact: <a href="mailto:aditit5@illinois.edu">aditit5@illinois.edu</a> · <a href="mailto:sstoica2@illinois.edu">sstoica2@illinois.edu</a>
   </div>
 </footer>
 
