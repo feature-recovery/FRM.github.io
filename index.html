@@ -581,8 +581,8 @@
       </div>
 
       <div class="figure">
-        <img src="images/fire360_example_frames.png"
-             alt="Example frames from Fire360: outdoor day, night operation, zero visibility, indoor drills, charred scenes, and smoke obstruction." />
+        <img src="images/dataset.png"
+             alt="Example scenes of indoor outdoor and objects of varying materials in Trace across level degredation." />
         <div class="figure-caption">
           Figure 1: TRACE contains real-image-grounded synthetic post-fire scenes and
 paired pristine-to-degraded object trajectories. Scene annotations include bounding boxes, material labels, and
@@ -646,8 +646,8 @@ changes under physical transformation..
         <div class="card-subtitle">Content Distribution</div>
         <div class="card-title">Subset Distributions</div>
         <div class="figure">
-          <img src="images/fire360_dataset_stats.png"
-               alt="Donut charts for Fire360 scene categories (indoor vs outdoor day/night) and action categories with counts and percentages." />
+          <img src="images/subset_breakdon.png"
+               alt="Barplot for the subset distributions." />
           <div class="figure-caption">
             Figure 3: Material and Object category distribution.
           </div>
@@ -727,8 +727,8 @@ changes under physical transformation..
       </div>
 
       <div class="figure">
-        <img src="images/fire360_tor_diagram.png"
-             alt="Diagram of the TOR task: 360° frames, a reference catalogue of pristine objects, and retrieval of the degraded object region." />
+        <img src="images/Frm.png"
+             alt="Implementation specification of FRM across model families." />
         <div class="figure-caption">
           Figure 6:(a) FRM is a residual Transformer over visual tokens, trained
 to recover pristine-aligned features from degraded ones with a zero-gated identity initialization; tap t is the
@@ -831,255 +831,194 @@ model. Dashed paths denote the no-FRM baseline.
         }
       </style>
     
-      <!-- DROPDOWN: merged tabular results -->
-      <details class="results-toggle">
-        <summary>View detailed tabular results</summary>
-    
-        <div class="card" style="margin-top: 12px;">
-          <div class="card-subtitle">All Models</div>
-          <div class="card-title">Performance across Fire360 tasks</div>
-          <p class="section-body" style="margin-top: 6px;">
-            For each task, the highlighted row indicates the best-performing model across all evaluated systems.
-          </p>
-    
-          <div class="table-wrapper" style="margin-top: 10px;">
-            <table>
-              <thead>
-                <tr>
-                  <th>Model</th>
-                  <th>Score</th>
-                  <th>Human</th>
-                  <th>Metric</th>
-                </tr>
-              </thead>
-              <tbody>
-                <!-- VQA -->
-                <tr class="row-group">
-                  <td colspan="4">Task: Visual Question Answering (VQA)</td>
-                </tr>
-                <tr class="row-highlight">
-                  <td>GPT-4o</td>
-                  <td>53.8%</td>
-                  <td class="cell-human">91.4%</td>
-                  <td class="cell-metric">Top-1 accuracy</td>
-                </tr>
-                <tr>
-                  <td>Qwen-VL</td>
-                  <td>47.2%</td>
-                  <td class="cell-human">91.4%</td>
-                  <td class="cell-metric">Top-1 accuracy</td>
-                </tr>
-                <tr>
-                  <td>LLaVA-v1.5-13B</td>
-                  <td>50.3%</td>
-                  <td class="cell-human">91.4%</td>
-                  <td class="cell-metric">Top-1 accuracy</td>
-                </tr>
-                <tr>
-                  <td>BLIP-2 (OPT-6.7B)</td>
-                  <td>42.7%</td>
-                  <td class="cell-human">91.4%</td>
-                  <td class="cell-metric">Top-1 accuracy</td>
-                </tr>
-                <tr>
-                  <td>InstructBLIP</td>
-                  <td>48.6%</td>
-                  <td class="cell-human">91.4%</td>
-                  <td class="cell-metric">Top-1 accuracy</td>
-                </tr>
-                <tr>
-                  <td>Kosmos-2.5</td>
-                  <td>47.5%</td>
-                  <td class="cell-human">91.4%</td>
-                  <td class="cell-metric">Top-1 accuracy</td>
-                </tr>
-    
-                <!-- TAC -->
-                <tr class="row-group">
-                  <td colspan="4">Task: Temporal Action Captioning</td>
-                </tr>
-                <tr class="row-highlight">
-                  <td>GLaMM-7B</td>
-                  <td>0.341</td>
-                  <td class="cell-human">0.85</td>
-                  <td class="cell-metric">BLEU-4</td>
-                </tr>
-                <tr>
-                  <td>SwinBERT</td>
-                  <td>0.315</td>
-                  <td class="cell-human">0.85</td>
-                  <td class="cell-metric">BLEU-4</td>
-                </tr>
-                <tr>
-                  <td>ProgressCaptioner</td>
-                  <td>0.288</td>
-                  <td class="cell-human">0.85</td>
-                  <td class="cell-metric">BLEU-4</td>
-                </tr>
-    
-                <!-- Object Localization -->
-                <tr class="row-group">
-                  <td colspan="4">Task: Object Localization under Distortion</td>
-                </tr>
-                <tr>
-                  <td>Grounding DINO</td>
-                  <td>38.4%</td>
-                  <td class="cell-human">85.2%</td>
-                  <td class="cell-metric">Mean IoU</td>
-                </tr>
-                <tr class="row-highlight">
-                  <td>OWLv2</td>
-                  <td>39.8%</td>
-                  <td class="cell-human">85.2%</td>
-                  <td class="cell-metric">Mean IoU</td>
-                </tr>
-                <tr>
-                  <td>YOLO-World</td>
-                  <td>36.5%</td>
-                  <td class="cell-human">85.2%</td>
-                  <td class="cell-metric">Mean IoU</td>
-                </tr>
-    
-                <!-- Safety-Critical Reasoning -->
-                <tr class="row-group">
-                  <td colspan="4">Task: Safety-Critical Reasoning</td>
-                </tr>
-                <tr>
-                  <td>GPT-4o (prompted)</td>
-                  <td>28.9%</td>
-                  <td class="cell-human">94.6%</td>
-                  <td class="cell-metric">Checklist accuracy</td>
-                </tr>
-                <tr>
-                  <td>Qwen-VL</td>
-                  <td>32.5%</td>
-                  <td class="cell-human">94.6%</td>
-                  <td class="cell-metric">Checklist accuracy</td>
-                </tr>
-                <tr class="row-highlight">
-                  <td>Claude-3 Sonnet</td>
-                  <td>33.0%</td>
-                  <td class="cell-human">94.6%</td>
-                  <td class="cell-metric">Checklist accuracy</td>
-                </tr>
-                <tr>
-                  <td>Llama-Guard-3-8B</td>
-                  <td>27.4%</td>
-                  <td class="cell-human">94.6%</td>
-                  <td class="cell-metric">Checklist accuracy</td>
-                </tr>
-    
-                <!-- TOR -->
-                <tr class="row-group">
-                  <td colspan="4">Task: Transformed Object Retrieval (TOR)</td>
-                </tr>
-                <tr class="row-highlight">
-                  <td>GPT-4o</td>
-                  <td>39.8%</td>
-                  <td class="cell-human">83.5%</td>
-                  <td class="cell-metric">Retrieval accuracy</td>
-                </tr>
-                <tr>
-                  <td>CLIP (ViT-B/32)</td>
-                  <td>32.5%</td>
-                  <td class="cell-human">83.5%</td>
-                  <td class="cell-metric">Retrieval accuracy</td>
-                </tr>
-                <tr>
-                  <td>BLIP-2 (OPT-6.7B)</td>
-                  <td>35.1%</td>
-                  <td class="cell-human">83.5%</td>
-                  <td class="cell-metric">Retrieval accuracy</td>
-                </tr>
-                <tr>
-                  <td>CoLLM</td>
-                  <td>35.7%</td>
-                  <td class="cell-human">83.5%</td>
-                  <td class="cell-metric">Retrieval accuracy</td>
-                </tr>
-                <tr>
-                  <td>MCoT-RE</td>
-                  <td>33.5%</td>
-                  <td class="cell-human">83.5%</td>
-                  <td class="cell-metric">Retrieval accuracy</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </details>
-    
-      <!-- 2×2 grid of core task plots -->
-      <div class="results-grid">
-        <!-- VQA -->
-        <div class="figure">
-          <img src="images/vqa.png"
-               alt="Bar chart comparing VQA performance of GPT-4o, Qwen-VL, LLaVA-13B, BLIP-2, InstructBLIP, Kosmos-2.5, and human experts." />
-          <div class="figure-caption">
-            Visual Question Answering (VQA): The best model still lags human experts by
-            38–49 accuracy points, showing that basic situational questions remain unreliable under
-            smoke and occlusion.
-          </div>
-        </div>
-    
-        <!-- Temporal Action Captioning -->
-        <div class="figure">
-          <img src="images/temporal_action_caption.png"
-               alt="Bar chart comparing temporal action captioning performance of GLaMM-7B, SwinBERT, ProgressCaptioner, and human experts." />
-          <div class="figure-caption">
-            Temporal Action Captioning: Video captioning models capture rough activity but miss key
-            safety-relevant details, with BLEU-4 gaps of roughly 0.5–0.56 to human experts.
-          </div>
-        </div>
-    
-        <!-- Object Localization -->
-        <div class="figure">
-          <img src="images/object_localization.png"
-               alt="Bar chart comparing object localization performance of Grounding DINO, OWLv2, YOLO-World, and human experts." />
-          <div class="figure-caption">
-            Object Localization under Distortion: Detectors lose nearly half of the mean IoU compared
-            to humans when safety gear appears in distorted or smoke-obscured regions of the 360° frame.
-          </div>
-        </div>
-    
-        <!-- Safety-Critical Reasoning -->
-        <div class="figure">
-          <img src="images/safety_critical_reasoning.png"
-               alt="Bar chart comparing safety-critical reasoning performance of GPT-4o, Claude-3 Sonnet, Llama-Guard-3-8B, Qwen-VL, and human experts." />
-          <div class="figure-caption">
-            Safety-Critical Reasoning: Dedicated safety and policy models still trail experts by
-            60–67 checklist-accuracy points, frequently missing violations obvious to trained instructors.
-          </div>
-        </div>
-      </div>
-    
-      <!-- Centered TOR plot -->
-      <div class="figure figure-tor">
-        <img src="images/tor.png"
-             alt="Bar chart comparing transformed object retrieval performance of GPT-4o, CLIP, BLIP-2, CoLLM, MCoT-RE, and human experts." />
-        <div class="figure-caption">
-          Transformed Object Retrieval (TOR): All evaluated models remain 44–51 points below human
-          retrieval accuracy, confirming that current representations do not preserve object identity
-          under severe fire damage.
-        </div>
-      </div>
-    
-      <!-- VQA degradation heatmaps (complementary view) -->
-      <!-- <div class="figure" style="margin-top: 32px;">
-        <img src="images/fire360_vqa_heatmap.png"
-             alt="Three heatmaps showing GPT-4o model performance, human performance, and their accuracy gap across smoke and light levels." />
-        <div class="figure-caption">
-          Degradation-aware VQA: Heatmaps show GPT-4o’s accuracy collapsing with higher smoke density
-          and lower light, while human experts stay above 80% across the grid.
-        </div>
-      </div> -->
-    
-      <p class="section-body">
-        Together, these plots and tables highlight a consistent pattern: Fire360 exposes large,
-        degradation-driven failures across architectures and tasks, indicating that robust perception
-        and episodic memory in 360° emergency scenes remain very open problems for current multimodal models.
-      </p>
-    </section>
+            <!-- DROPDOWN: merged tabular results -->
+            <details class="results-toggle">
+              <summary>View detailed tabular results</summary>
+      
+              <div class="card" style="margin-top: 12px;">
+                <div class="card-subtitle">All Models</div>
+                <div class="card-title">Base vs. +FRM across post-fire tasks</div>
+                <p class="section-body" style="margin-top: 6px;">
+                  Each model is evaluated with its encoder frozen, with and without the feature mapping module (FRM).
+                  &Delta; is the absolute gain in points. For each task, the highlighted row indicates the best
+                  +FRM score across all evaluated models.
+                </p>
+      
+                <div class="table-wrapper" style="margin-top: 10px;">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Model</th>
+                        <th>Base</th>
+                        <th>+FRM</th>
+                        <th>&Delta;</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <!-- Pristine-state retrieval -->
+                      <tr class="row-group">
+                        <td colspan="4">Task: Pristine-State Retrieval (R@1)</td>
+                      </tr>
+                      <tr>
+                        <td>Qwen3-VL</td>
+                        <td>74.55</td>
+                        <td>85.28</td>
+                        <td class="cell-delta">+10.73</td>
+                      </tr>
+                      <tr>
+                        <td>Qwen2.5-VL</td>
+                        <td>60.20</td>
+                        <td>72.03</td>
+                        <td class="cell-delta">+11.83</td>
+                      </tr>
+                      <tr>
+                        <td>InternVL3.5</td>
+                        <td>59.09</td>
+                        <td>74.92</td>
+                        <td class="cell-delta">+15.83</td>
+                      </tr>
+                      <tr class="row-highlight">
+                        <td>Molmo2</td>
+                        <td>85.06</td>
+                        <td><strong>90.00</strong></td>
+                        <td class="cell-delta">+4.94</td>
+                      </tr>
+                      <tr>
+                        <td>LLaVA-OV-1.5</td>
+                        <td>83.97</td>
+                        <td>86.09</td>
+                        <td class="cell-delta">+2.12</td>
+                      </tr>
+      
+                      <!-- Original material recovery -->
+                      <tr class="row-group">
+                        <td colspan="4">Task: Original Material Recovery (micro-F1)</td>
+                      </tr>
+                      <tr class="row-highlight">
+                        <td>Qwen3-VL</td>
+                        <td>36.00</td>
+                        <td><strong>39.24</strong></td>
+                        <td class="cell-delta">+3.24</td>
+                      </tr>
+                      <tr>
+                        <td>Qwen2.5-VL</td>
+                        <td>30.50</td>
+                        <td>36.78</td>
+                        <td class="cell-delta">+6.28</td>
+                      </tr>
+                      <tr>
+                        <td>InternVL3.5</td>
+                        <td>26.10</td>
+                        <td>35.91</td>
+                        <td class="cell-delta">+9.81</td>
+                      </tr>
+                      <tr>
+                        <td>Molmo2</td>
+                        <td>23.56</td>
+                        <td>27.52</td>
+                        <td class="cell-delta">+3.96</td>
+                      </tr>
+                      <tr>
+                        <td>LLaVA-OV-1.5</td>
+                        <td>22.31</td>
+                        <td>26.89</td>
+                        <td class="cell-delta">+4.58</td>
+                      </tr>
+      
+                      <!-- Pristine description generation -->
+                      <tr class="row-group">
+                        <td colspan="4">Task: Pristine Description Generation (description score)</td>
+                      </tr>
+                      <tr class="row-highlight">
+                        <td>Qwen3-VL</td>
+                        <td>41.67</td>
+                        <td><strong>45.15</strong></td>
+                        <td class="cell-delta">+3.48</td>
+                      </tr>
+                      <tr>
+                        <td>Qwen2.5-VL</td>
+                        <td>40.50</td>
+                        <td>44.00</td>
+                        <td class="cell-delta">+3.50</td>
+                      </tr>
+                      <tr>
+                        <td>InternVL3.5</td>
+                        <td>27.01</td>
+                        <td>35.42</td>
+                        <td class="cell-delta">+8.41</td>
+                      </tr>
+                      <tr>
+                        <td>Molmo2</td>
+                        <td>33.80</td>
+                        <td>38.13</td>
+                        <td class="cell-delta">+4.33</td>
+                      </tr>
+                      <tr>
+                        <td>LLaVA-OV-1.5</td>
+                        <td>35.48</td>
+                        <td>39.34</td>
+                        <td class="cell-delta">+3.86</td>
+                      </tr>
+      
+                      <!-- Functional reasoning -->
+                      <tr class="row-group">
+                        <td colspan="4">Task: Functional Reasoning (mean micro-F1)</td>
+                      </tr>
+                      <tr>
+                        <td>Qwen3-VL</td>
+                        <td>41.02</td>
+                        <td>46.96</td>
+                        <td class="cell-delta">+5.94</td>
+                      </tr>
+                      <tr>
+                        <td>Qwen2.5-VL</td>
+                        <td>38.11</td>
+                        <td>43.62</td>
+                        <td class="cell-delta">+5.51</td>
+                      </tr>
+                      <tr>
+                        <td>InternVL3.5</td>
+                        <td>36.13</td>
+                        <td>40.48</td>
+                        <td class="cell-delta">+4.35</td>
+                      </tr>
+                      <tr class="row-highlight">
+                        <td>Molmo2</td>
+                        <td>42.64</td>
+                        <td><strong>47.95</strong></td>
+                        <td class="cell-delta">+5.31</td>
+                      </tr>
+                      <tr>
+                        <td>LLaVA-OV-1.5</td>
+                        <td>39.76</td>
+                        <td>43.07</td>
+                        <td class="cell-delta">+3.31</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </details>
+      
+            <!-- 2×2 grid of task plots (single square image) -->
+            <div class="figure figure-tor">
+              <img src="images/frm_results_square.png"
+                   alt="2x2 grid of bar charts comparing base and +FRM performance of Qwen3-VL, Qwen2.5-VL, InternVL3.5, Molmo2, and LLaVA-OV-1.5 on pristine-state retrieval, original material recovery, pristine description generation, and functional reasoning." />
+              <div class="figure-caption">
+                Base vs. +FRM: Adding FRM improves all five models on all four tasks while keeping the host
+                model frozen, with average gains of 9.1 R@1 points on retrieval, 5.6 micro-F1 points on material
+                recovery, 4.7 points on description generation, and 4.9 micro-F1 points on functional reasoning.
+                Gains are largest for weaker baselines: InternVL3.5 improves by 15.83 R@1 on retrieval and
+                9.81 micro-F1 on material recovery.
+              </div>
+            </div>
+      
+            <p class="section-body">
+              Together, these results show that a lightweight, plug-and-play feature mapping consistently
+              recovers object understanding lost to fire damage across model families, without retraining
+              the host model.
+            </p>
+          </section>
     
 
 <!-- RESOURCES -->
