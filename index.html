@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Fire360: Robust Perception & Episodic Memory in 360° Firefighting Video</title>
+  <title>Feature Recovery for Object Understanding After Irreversible Fire Damage</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
@@ -494,29 +494,32 @@
     <!-- HERO -->
     <section class="hero reveal">
       <div class="hero-badge">
-        <span>NeurIPS 2025 Spotlight · Dataset & Benchmark</span>
+        <span>NeurIPS 2026 Poster · Benchmark & Method</span>
       </div>
       <h1 class="hero-title">
-        Fire360: Robust Perception & Episodic Memory in Degraded 360° Firefighting Video
+        Feature Recovery for Object Understanding After Irreversible Fire Damage
       </h1>
       <p class="hero-subtitle">
-        A large-scale benchmark of 360° firefighter training videos that probes spatial grounding,
-        temporal understanding, safety-critical reasoning, and transformation-invariant retrieval
-        in the environments where reliability matters most.
+        Introduces the first transformation-aware dataset for post-fire object understanding, 
+        along with a lightweight plug-and-play module that maps degraded encoder features 
+        to pristine-aligned representations while keeping the host model frozen. 
+        Averaged across severity levels, the module improves retrieval by 12.5%, 
+        material recovery by 20.1%, description generation by 13.2%, and functional reasoning by 12.4%.
       </p>
       <p class="hero-authors">
         <a href="https://adititiwari19.github.io/" target="_blank" rel="noreferrer">Aditi Tiwari</a>,
-        Farzaneh Masoud, Dac Trong Nguyen, Jill Kraft,
+        <a href="https://sstoica12.github.io/" target="_blank" rel="noreferrer">Sofia Stoica</a>,
+        <a href="https://savya08.github.io/" target="_blank" rel="noreferrer">Savya Khosla</a>,
+        <a href="http://luthuli.cs.uiuc.edu/~daf/" target="_blank" rel="noreferrer">David Forsyth</a>,
         <a href="https://siebelschool.illinois.edu/about/people/faculty/hengji" target="_blank" rel="noreferrer">Heng Ji</a>,
-        <a href="https://siebelschool.illinois.edu/about/people/faculty/klara" target="_blank" rel="noreferrer">Klara Nahrstedt</a><br/>
-        University of Illinois Urbana–Champaign · Illinois Fire Service Institute
+        University of Illinois Urbana–Champaign
       </p>
       <div class="hero-meta-row">
-        228 videos · 50 hours · 5 tasks · 43.7-point human–model gap on TOR
+       21.4K images · 499 objects · 189 categories · 5 tasks · 10%+ gains over detector and VLM baselines
       </div>
 
       <div class="hero-buttons">
-        <a class="btn" href="https://arxiv.org/abs/2506.02167" target="_blank" rel="noreferrer">
+        <a class="btn" href="https://arxiv.org/abs/2609.12078" target="_blank" rel="noreferrer">
           <span class="icon">⬇</span><span>Paper (arXiv)</span>
         </a>
         <a class="btn btn-secondary" href="https://uofi.app.box.com/v/fire360dataset" target="_blank" rel="noreferrer">
@@ -543,20 +546,29 @@
   </div>
   <div class="section-body">
     <p>
-      Each year, tens of thousands of firefighters are injured in the line of duty, often when
-      visibility is severely reduced and situational perception breaks down. Existing video
-      benchmarks typically assume clean, forward-facing views or synthetic scenes, which makes it
-      difficult to study model behavior in degraded 360° environments where decisions have
-      direct safety implications.
-    </p>
-    <br/>
-    <p>
-      Fire360 is constructed from professionally recorded firefighter training sessions with
-      certified instructors and covers indoor rescues and outdoor operations across day, night,
-      dense smoke, and post-fire overhaul. The benchmark defines five tasks
-      (visual question answering, temporal captioning, object localization, safety-critical
-      reasoning, and transformed object retrieval) in order to isolate where human experts retain
-      robust understanding and state-of-the-art multimodal models still fail.
+      Objects in post-fire environments often undergo irreversible physical transformations that change their geometry, 
+      material state, and visual appearance. Detecting and identifying these remnants is critical for locating 
+      hazards, reconstructing pre-incident contents, and inventorying losses. Unlike standard image corruptions, 
+      these degradations affect the physical structure of the object itself. 
+      </p>
+      <br/>
+      To study this setting, we introduce TRACE, a transformation-aware benchmark for post-fire object understanding. 
+      TRACE contains 21.4K real-image-grounded synthetic scenes and paired object-level pristine-to-degraded progressions 
+      spanning 499 object identities across 189 categories. We define five tasks targeting localization and pre-degradation 
+      understanding: degraded-object detection, pristine-state recovery and retrieval, original material recovery, 
+      pristine description generation, and functional reasoning. 
+      </p>
+      <br/>  
+      Existing models degrade sharply with severity. 
+      From the least to the most severe level, RF-DETR mAP decreases by 71% relative, while InternVL3.5 retrieval R@1 falls 
+      from 93.85 to 28.11. To address this, we propose Feature Recovery Module (FRM), 
+      a lightweight plug-and-play module that maps degraded encoder features to pristine-aligned 
+      representations while keeping the host frozen. Trained only with paired feature supervision, 
+      FRM improves scene-level detection, CLIP/SigLIP2 feature recovery, and all four object-level VLM tasks, 
+      with larger gains under more severe degradation. On 100 held-out real post-fire scenes, 
+      FRM also improves detection by 16.1% relative. Across VLM hosts and severity levels, 
+      relative gains average 12.5% for retrieval, 20.1% for material recovery, 13.2% for description 
+      generation, and 12.4% for functional reasoning.
     </p>
   </div>
 </section>
