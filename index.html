@@ -492,10 +492,6 @@
 
   <main class="page">
     <!-- HERO -->
-    <section class="hero reveal">
-       <div class="hero-badge">
-        <span>NeurIPS 2026 Poster · Benchmark & Method</span>
-      </div>
       <div class="hero-fire">
         <canvas id="embers" aria-hidden="true"></canvas>
         <h1 class="hero-title">
@@ -780,13 +776,13 @@ model. Dashed paths denote the no-FRM baseline.
       .hero-fire::before {
         content: "";
         position: absolute;
-        inset: 20% 10% -25% 10%;
+        inset: 0% 5% -30% 5%;
         z-index: -2;
         background:
-          radial-gradient(ellipse 30% 60% at 25% 100%, rgba(255,110,30,0.55), transparent 70%),
-          radial-gradient(ellipse 28% 75% at 50% 100%, rgba(255,70,20,0.55), transparent 70%),
-          radial-gradient(ellipse 30% 60% at 75% 100%, rgba(255,160,50,0.5), transparent 70%);
-        filter: blur(30px);
+          radial-gradient(ellipse 30% 65% at 22% 100%, rgba(255,110,30,0.9), transparent 70%),
+          radial-gradient(ellipse 28% 80% at 50% 100%, rgba(255,60,10,0.9), transparent 70%),
+          radial-gradient(ellipse 30% 65% at 78% 100%, rgba(255,160,40,0.85), transparent 70%);
+        filter: blur(24px);
         transform-origin: bottom center;
         animation: fire-flicker 2.6s ease-in-out infinite alternate;
       }
@@ -813,6 +809,10 @@ model. Dashed paths denote the no-FRM baseline.
       /* keep the title crisp over the fire */
       .hero-fire .hero-title {
         text-shadow: 0 2px 18px rgba(0,0,0,0.65);
+      }
+      .hero-meta-row {
+        letter-spacing: 0.1em;
+        line-height: 1.8;
       }
 
     @media (prefers-reduced-motion: reduce) {
