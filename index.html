@@ -492,11 +492,9 @@
 
   <main class="page">
     <!-- HERO -->
-      <div class="hero-fire">
-        <canvas id="embers" aria-hidden="true"></canvas>
-        <h1 class="hero-title">
-          Feature Recovery for Object Understanding After Irreversible Fire Damage
-        </h1>
+    <section class="hero reveal">
+      <div class="hero-badge">
+        <span>NeurIPS 2026 Poster · Benchmark & Method</span>
       </div>
       <h1 class="hero-title">
         Feature Recovery for Object Understanding After Irreversible Fire Damage
@@ -766,59 +764,6 @@ model. Dashed paths denote the no-FRM baseline.
     
       <!-- Simple styles for grid + dropdown + centered TOR -->
       <style>
-         /* FIRE BEHIND TITLE */
-      .hero-fire {
-        position: relative;
-        isolation: isolate;
-      }
-  
-      /* flickering glow */
-      .hero-fire::before {
-        content: "";
-        position: absolute;
-        inset: 0% 5% -30% 5%;
-        z-index: -2;
-        background:
-          radial-gradient(ellipse 30% 65% at 22% 100%, rgba(255,110,30,0.9), transparent 70%),
-          radial-gradient(ellipse 28% 80% at 50% 100%, rgba(255,60,10,0.9), transparent 70%),
-          radial-gradient(ellipse 30% 65% at 78% 100%, rgba(255,160,40,0.85), transparent 70%);
-        filter: blur(24px);
-        transform-origin: bottom center;
-        animation: fire-flicker 2.6s ease-in-out infinite alternate;
-      }
-  
-      @keyframes fire-flicker {
-        0%   { transform: scaleY(1) skewX(0deg);      opacity: 0.85; }
-        25%  { transform: scaleY(1.1) skewX(-2deg);   opacity: 1; }
-        50%  { transform: scaleY(0.94) skewX(1.5deg); opacity: 0.8; }
-        75%  { transform: scaleY(1.14) skewX(-1deg);  opacity: 0.95; }
-        100% { transform: scaleY(1) skewX(0.5deg);    opacity: 0.9; }
-      }
-  
-      /* rising embers */
-      #embers {
-        position: absolute;
-        left: 0;
-        top: -30%;
-        width: 100%;
-        height: 150%;
-        z-index: -1;
-        pointer-events: none;
-      }
-  
-      /* keep the title crisp over the fire */
-      .hero-fire .hero-title {
-        text-shadow: 0 2px 18px rgba(0,0,0,0.65);
-      }
-      .hero-meta-row {
-        letter-spacing: 0.1em;
-        line-height: 1.8;
-      }
-
-    @media (prefers-reduced-motion: reduce) {
-      .hero-fire::before { animation: none; }
-      #embers { display: none; }
-    }
         .results-toggle {
           margin-bottom: 20px;
         }
@@ -898,10 +843,10 @@ model. Dashed paths denote the no-FRM baseline.
             margin-top: 24px;
           }
         }
-      .figure-caption {
-        color: #c4c8ce !important;
-        opacity: 1 !important;
-      }
+        .figure-caption {
+      color: #c4c8ce !important;
+      opacity: 1 !important;
+    }
       </style>
     
             <!-- DROPDOWN: merged tabular results -->
