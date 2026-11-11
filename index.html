@@ -584,18 +584,20 @@
         <img src="images/fire360_example_frames.png"
              alt="Example frames from Fire360: outdoor day, night operation, zero visibility, indoor drills, charred scenes, and smoke obstruction." />
         <div class="figure-caption">
-          Figure 1: Example Fire360 frames across outdoor day/night, zero-visibility,
-          indoor charred scenes, and smoke-obstructed training environments. Replace this image
-          with your actual montage.
+          Figure 1: TRACE contains real-image-grounded synthetic post-fire scenes and
+paired pristine-to-degraded object trajectories. Scene annotations include bounding boxes, material labels, and
+captions; object trajectories include part-level materials and progressive degradation states for tracking identity
+changes under physical transformation..
         </div>
       </div>
 
       <div class="card">
         <div class="card-subtitle">Positioning</div>
-        <div class="card-title">Comparison with existing video datasets</div>
+        <div class="card-title">Comparison with existing robustness and disaster datasets</div>
         <p class="section-body" style="margin-top: 6px;">
-          Fire360 complements prior video resources by jointly offering 360° views, egocentric and
-          third-person perspectives, synchronized audio, and explicitly safety-critical events.
+          Figure 2: Existing benchmarks provide clean-corrupted
+          image pairs, matched adverse-condition scenes, or disaster damage annotations. TRACE instead tracks individual
+          objects through progressive physical degradation with a pristine reference.
         </p>
 
         <div class="table-wrapper">
@@ -642,21 +644,14 @@
 
       <div class="card">
         <div class="card-subtitle">Content Distribution</div>
-        <div class="card-title">Scene and action statistics</div>
+        <div class="card-title">Subset Distributions</div>
         <div class="figure">
           <img src="images/fire360_dataset_stats.png"
                alt="Donut charts for Fire360 scene categories (indoor vs outdoor day/night) and action categories with counts and percentages." />
           <div class="figure-caption">
-            Figure 3: Scene distribution, action categories and object categories.
+            Figure 3: Material and Object category distribution.
           </div>
         </div>
-        <p class="section-body">
-          Fire360 balances <strong>indoor rescue/training (43.9%)</strong> with
-          <strong>outdoor operations at night (28.5%)</strong> and
-          <strong>outdoor operations during the day (27.6%)</strong>, ensuring that models must
-          handle both low-light interiors and open-air incident grounds. Eight safety-relevant
-          action categories support temporal reasoning and analysis of model failure modes.
-        </p>
       </div>
     </section>
 
@@ -668,92 +663,80 @@
 
       <div class="task-grid">
         <div class="task-card">
-          <div class="task-title">360° Visual Question Answering (VQA)</div>
-          <div class="task-meta">Spatial reasoning · Checklist queries</div>
+          <div class="task-title">Degraded-object detection.</div>
+          <div class="task-meta">Goal: ocalize all objects of interest in scene-level postfire images.</div>
           <p class="task-text">
-            Models answer expert-authored questions about presence, visibility, and protocol
-            adherence in single equirectangular frames
-            (e.g., “Is a clear egress path visible through the smoke?”).
+            Output: bounding boxes + mapped COCO classes.
           </p>
-          <div class="pill"><span class="pill-dot"></span>Metric: Top-1 accuracy</div>
+          <div class="pill"><span class="pill-dot"></span>Metric: COCO-mapped mAP@0.5:0.95.</div>
         </div>
 
         <div class="task-card">
-          <div class="task-title">Temporal Action Captioning</div>
-          <div class="task-meta">Procedure summarization · 10–20s clips</div>
+          <div class="task-title">Pristine-state recovery (feature). </div>
+          <div class="task-meta">Goal: recover CLIP/SigLIP2 features toward paired pristine targets.</div>
           <p class="task-text">
-            Given short degraded clips, models must describe what firefighters are doing in
-            natural language, aligned with standardized training procedures.
+            Output: recovered visual embeddings.
           </p>
-          <div class="pill"><span class="pill-dot"></span>Metric: BLEU-4</div>
+          <div class="pill"><span class="pill-dot"></span>Metric: MSE, cosine similarity.</div>
         </div>
 
         <div class="task-card">
-          <div class="task-title">Object Localization under Distortion</div>
-          <div class="task-meta">Detection · Smoke & geometric stretch</div>
+          <div class="task-title">Pristine-state retrieval (gallery).</div>
+          <div class="task-meta">Goal: retrieve paired pristine reference from candidate gallery using VLM embeddings.</div>
           <p class="task-text">
-            Category-agnostic localization of safety gear (SCBA, helmets, hoses) in 360°
-            equirectangular frames, where poles exhibit strong geometric distortion.
+            Output: ranked pristine gallery.
           </p>
-          <div class="pill"><span class="pill-dot"></span>Metric: Mean IoU</div>
+          <div class="pill"><span class="pill-dot"></span>Metric: recall@1.</div>
         </div>
 
         <div class="task-card">
-          <div class="task-title">Safety-Critical Reasoning</div>
-          <div class="task-meta">Checklist-based compliance</div>
+          <div class="task-title">Original material recovery.</div>
+          <div class="task-meta">Goal: predict pre-degradation materials from degraded object image.</div>
           <p class="task-text">
-            Models decide whether a frame/clip is safe and justify their decision using a
-            firefighter checklist (e.g., sealed gas mask, three-point contact on ladders).
+            Output: material label set.
           </p>
-          <div class="pill"><span class="pill-dot"></span>Metric: Checklist accuracy</div>
+          <div class="pill"><span class="pill-dot"></span>Metric: Micro-F1 over normalized material classes.</div>
         </div>
 
         <div class="task-card">
-          <div class="task-title">Transformed Object Retrieval (TOR)</div>
-          <div class="task-meta">Episodic memory · Core contribution</div>
+          <div class="task-title">Pristine description generation.</div>
+          <div class="task-meta">Goal: describe object identity, material, and function before degradation.</div>
           <p class="task-text">
-            Given a clean exemplar of an object (helmet, hose, extinguisher) and an unpaired 360°
-            scene after fire damage, the model must retrieve the degraded instance without seeing
-            the transformation.
+           Output: single-sentence description.
           </p>
-          <div class="pill"><span class="pill-dot"></span>Metric: Top-1 retrieval accuracy</div>
+          <div class="pill"><span class="pill-dot"></span>Metric: mean of identity accuracy, material micro-F1, and function accuracy.</div>
         </div>
       </div>
+
+      <div class="task-grid">
+        <div class="task-card">
+          <div class="task-title">Functional reasoning.</div>
+          <div class="task-meta">Goal: predict pre-degradation function and required restoration materialss.</div>
+          <p class="task-text">
+            Output: function tags + restoration materials.
+          </p>
+          <div class="pill"><span class="pill-dot"></span>Metric: mean of function-tag micro-F1 and restoration-material micro-F1.</div>
+        </div>
+
     </section>
 
     <!-- TOR SECTION -->
     <section id="tor" class="reveal section-block">
       <div class="section-header">
-        <h2 class="section-title">Transformed Object Retrieval (TOR)</h2>
+        <h2 class="section-title">Feature Recovery Module</h2>
       </div>
 
       <div class="figure">
         <img src="images/fire360_tor_diagram.png"
              alt="Diagram of the TOR task: 360° frames, a reference catalogue of pristine objects, and retrieval of the degraded object region." />
         <div class="figure-caption">
-          Figure 6: Illustration of TOR. A world model with episodic memory receives
-          (i) 360° frames from a post-fire scene and (ii) a catalogue of pristine reference
-          objects. Given a natural-language query such as “Locate the red firefighter helmet in the
-          post-fire scene,” the model must mark the correct degraded helmet region.
+          Figure 6:(a) FRM is a residual Transformer over visual tokens, trained
+to recover pristine-aligned features from degraded ones with a zero-gated identity initialization; tap t is the
+frozen host feature interface where FRM is inserted. (b) In RF-DETR, DINOv2 feature maps from four
+tapped layers are flattened, corrected by a single shared FRM head, and reshaped before the unchanged detector.
+(c) In Qwen3-VL, FRM corrects post-merger visual tokens before they are consumed by the frozen language
+model. Dashed paths denote the no-FRM baseline.
         </div>
-      </div>
-
-      <div class="card">
-        <div class="card-subtitle">Example</div>
-        <div class="card-title">From pristine helmet to charred silhouette</div>
-        <p class="section-body">
-          In a typical example, the reference catalogue provides a clean side view of a red
-          firefighter helmet. The target frame shows the same helmet after an interior room burn:
-          the visor is blackened, reflections are gone, and surrounding walls have collapsed.
-          Pipes, lamps, and other round shapes now compete as distractors.
-        </p>
-        <br/>
-        <p class="section-body">
-          Humans successfully retrieve the correct region in <strong>83.5%</strong> of cases.
-          GPT-4o achieves only <strong>39.8%</strong>, often confusing pipes or background
-          clutter for the helmet. CLIP and BLIP-2 perform worse, revealing that current models
-          lack transformation-invariant object identity when temporal continuity is removed.
-        </p>
       </div>
     </section>
 
@@ -761,9 +744,7 @@
       <div class="section-header">
         <h2 class="section-title">Results</h2>
         <p class="section-tagline">
-          Bar plots summarize the persistent human–model gaps across all five Fire360 tasks.
-          Even state-of-the-art systems fall far short of expert performance when faced with
-          smoke, darkness, and 360° distortion.
+          Bar plots summarize the performance improvement of FRM across all tasks and models.
         </p>
       </div>
     
@@ -1111,9 +1092,8 @@
     <div class="card-subtitle">Ethics</div>
     <div class="card-title">Responsible release</div>
     <p class="section-body" style="margin-top: 6px;">
-      All footage documents professional training drills with informed consent. No personally
-      identifiable information is included; participants appear in protective gear. Fire360 is
-      released for research on robust, safety-critical multimodal systems and may not be used
+      All real-word have free use lisence and all generated images are in the compliance of the lisense by Gemini 3 Image Pro. All footage documents professional training drills with informed consent. No personally
+      TRACE and FRM is released for research on robust, safety-critical multimodal systems and may not be used
       for surveillance, profiling, or non-consensual monitoring.
     </p>
   </div>
@@ -1123,15 +1103,13 @@
     <div class="card-title">BibTeX</div>
     <pre>
 @misc{tiwari2025fire360benchmarkrobustperception,
-  title         = {Fire360: A Benchmark for Robust Perception and Episodic Memory
-                   in Degraded 360-Degree Firefighting Videos},
-  author        = {Aditi Tiwari and Farzaneh Masoud and Dac Trong Nguyen
-                   and Jill Kraft and Heng Ji and Klara Nahrstedt},
-  year          = {2025},
-  eprint        = {2506.02167},
+  title         = {Feature Recovery for Object Understanding After Irreversible Fire Damage},
+  author        = {Aditi Tiwari and Sofia Stoica and Savya Khosla and David Forsyth and Heng Ji},
+  year          = {2026},
+  eprint        = {2609.12078},
   archivePrefix = {arXiv},
   primaryClass  = {cs.CV},
-  url           = {https://arxiv.org/abs/2506.02167},
+  url           = {https://arxiv.org/abs/2609.12078},
 }</pre>
   </div>
 </section>
@@ -1139,7 +1117,7 @@
 <!-- FOOTER -->
 <footer class="footer">
   <div>
-    Fire360 · NeurIPS 2025 Spotlight &nbsp;·&nbsp; UIUC · Illinois Fire Service Institute
+    FRM · NeurIPS 2026 Poster &nbsp;·&nbsp; UIUC
   </div>
   <div>
     Contact: <a href="mailto:aditit5@illinois.edu">aditit5@illinois.edu</a>
