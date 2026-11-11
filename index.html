@@ -477,13 +477,13 @@
     <div class="nav-inner">
       <div class="nav-left">
         <div class="nav-dot"></div>
-        <div class="nav-title">Fire360 </div>
+        <div class="nav-title">Feature Recovery for Post-fire Object Detection </div>
       </div>
       <nav class="nav-links">
         <a href="#overview">Overview</a>
         <a href="#dataset">Dataset</a>
         <a href="#tasks">Tasks</a>
-        <a href="#tor">TOR</a>
+        <a href="#tor">TRACE</a>
         <a href="#results">Results</a>
         <a href="#resources">Resources</a>
       </nav>
@@ -672,7 +672,7 @@ changes under physical transformation..
     </section>
 
     <!-- TASKS -->
-    <section id="tasks" class="reveal section-block">
+   <section id="tasks" class="reveal section-block">
       <div class="section-header">
         <h2 class="section-title">Benchmark Tasks</h2>
       </div>
@@ -680,7 +680,7 @@ changes under physical transformation..
       <div class="task-grid">
         <div class="task-card">
           <div class="task-title">Degraded-object detection.</div>
-          <div class="task-meta">Goal: ocalize all objects of interest in scene-level postfire images.</div>
+          <div class="task-meta">Goal: localize all objects of interest in scene-level post-fire images.</div>
           <p class="task-text">
             Output: bounding boxes + mapped COCO classes.
           </p>
@@ -688,7 +688,7 @@ changes under physical transformation..
         </div>
 
         <div class="task-card">
-          <div class="task-title">Pristine-state recovery (feature). </div>
+          <div class="task-title">Pristine-state recovery (feature).</div>
           <div class="task-meta">Goal: recover CLIP/SigLIP2 features toward paired pristine targets.</div>
           <p class="task-text">
             Output: recovered visual embeddings.
@@ -718,22 +718,20 @@ changes under physical transformation..
           <div class="task-title">Pristine description generation.</div>
           <div class="task-meta">Goal: describe object identity, material, and function before degradation.</div>
           <p class="task-text">
-           Output: single-sentence description.
+            Output: single-sentence description.
           </p>
           <div class="pill"><span class="pill-dot"></span>Metric: mean of identity accuracy, material micro-F1, and function accuracy.</div>
         </div>
-      </div>
 
-      <div class="task-grid">
         <div class="task-card">
           <div class="task-title">Functional reasoning.</div>
-          <div class="task-meta">Goal: predict pre-degradation function and required restoration materialss.</div>
+          <div class="task-meta">Goal: predict pre-degradation function and required restoration materials.</div>
           <p class="task-text">
             Output: function tags + restoration materials.
           </p>
           <div class="pill"><span class="pill-dot"></span>Metric: mean of function-tag micro-F1 and restoration-material micro-F1.</div>
         </div>
-
+      </div>
     </section>
 
     <!-- TOR SECTION -->
@@ -1057,7 +1055,7 @@ model. Dashed paths denote the no-FRM baseline.
     <div class="card-subtitle">Citation</div>
     <div class="card-title">BibTeX</div>
     <pre>
-@misc{tiwari2025fire360benchmarkrobustperception,
+@misc{tiwari2025featurerevoryrobustfiredetection,
   title         = {Feature Recovery for Object Understanding After Irreversible Fire Damage},
   author        = {Aditi Tiwari and Sofia Stoica and Savya Khosla and David Forsyth and Heng Ji},
   year          = {2026},
